@@ -26,7 +26,8 @@
     
   var setCookie = function(key, value, msec_in_utc) {
     var expire = new Date(msec_in_utc);
-    document.cookie = key + "=" + escape(value) + ";path=/" +";expires=" + expire.toUTCString();
+    document.cookie = key + "=" + escape(value) + ";path=/" +";expires=" + expire.toUTCString() + '<%= ";domain=#{ENV['COOKIE_DOMAIN']}" if ENV['COOKIE_DOMAIN'] %>';
+
   };
 
   var setStorage = function(key, value) {
