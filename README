@@ -1,37 +1,38 @@
 = What is this?
 
-MultiTrack solves an issue that will come up sooner or later as your SaaS 
-business is starting to grow. At some point you will spend money on Marketing and
-track your return on investment. To do that, you need to know where your customers
-come from.
+MultiTrack helps with an issue that will come up sooner or later in any commercial 
+web application business: Tracking marketing spend. 
 
-Most businesses use Google Analytics for those purposes, for example storing the _umtz 
-cookies from the Google Analytics tracking script with each signup to later analyise things.
+Most businesses use Google Analytics for this purpose. For example, you can store the _umtz 
+cookie from the Google Analytics with each signup for later analysis. 
 
-However, the issue with this is that you will attribute the full conversion to the last 
-click. For example, if a fresh customer came to you by entering your name in Google does she
-really come from an organic search? How did she find out about your brand? Maybe she has been
-to your website a month ago after she clicked on a banner, and maybe a week ago after seeing
-a article on a blog!
+However, the problem is that you will only track the last click before the signup. This leads
+to very inaccurate results. Often customers come to a website many times through different 
+channels before they decide to pull the trigger. For example, if a fresh customer came to you by 
+entering your brand name in Google does she really come from an organic search? 
+How did she find out about your brand? Maybe she has been to your website a month 
+ago after she clicked on a banner, and maybe a week ago after seeing a article on a blog!
 
-To get good metrics you have to store all visits of a potential new customer with the signup.
+To get a good handle on the effectiveness of your marketing spend you have to attribute the signup 
+to all these sources equally (or better, develop a weighted algorithm). 
 
-This project aims to keep a full log of visits, just set up your own copy on your servers, 
-add http://multitrack.xxx.com/track.js to your homepage and save the contents of the _y cookie
-with each signup. 
-
+This project aims to keep a full log of visits in a DB table and provide a convenient unique_id cookie 
+for storing with the signup. Just set up your own copy on your servers, add /track.js to your product 
+homepage and everything else is taken care of.
 
 = Todo
 
 * Allow export API (csv, json)
 * Add realtime(?) dashboard
+* Add classification of referrers into categories such as Search engines, social media, paid
+  sources like Google CPC, Retargeting and so on. 
 * perhaps make tracking cookies more sticky, taking lessons from http://samy.pl/evercookie/
 
 = Installation
 
   gem install bundler
-  bundler install
-  shotgun
+  bundle install
+  bundle exec shotgun
 
 
 = Deployment
