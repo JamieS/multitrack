@@ -1,27 +1,21 @@
-require "rubygems"
-require "bundler"
-require 'json'
-require 'rack/contrib'
+require 'rubygems'
+require 'bundler'
 require 'bundler/setup'
-require File.dirname(__FILE__) + '/database'
-require File.dirname(__FILE__) + '/stats_app'
-require File.dirname(__FILE__) + '/track_app'
+require 'json'
 
-use Rack::Lint
-use Rack::ShowExceptions
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'multitrack'
+
 use Rack::ContentLength
 
 map '/track.js' do
-  run TrackApp.new
+  run Multitrack::TrackApp.new
 end
 
 map '/record.gif' do
-  run StatsApp.new
+  run Multitrack::StatsApp.new
 end
 
 map '/' do
-  run lambda { [404, {'Content-Type' => 'text/plain'}, ['Not Found']] }
+  run Multitrack::NotFound
 end
-
-
-

@@ -7,3 +7,4 @@ jferris-*.gemspec
 *.rbc
 .bundle/config
 .bundle
+log

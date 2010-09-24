@@ -1,10 +1,8 @@
-source :gemcutter
+source 'http://rubygems.org'
 
 gem "activerecord"
 gem "rack"
-gem "rack-contrib"
 gem "json"
 gem "sqlite3-ruby"
 gem "shotgun"
 gem "heroku"
-gem "shotgun"

@@ -1,6 +1,5 @@
 GEM
   remote: http://rubygems.org/
-  remote: http://gems.github.com/
   specs:
     activemodel (3.0.0)
       activesupport (= 3.0.0)
@@ -28,8 +27,6 @@ GEM
       rake (>= 0.8.1)
     mime-types (1.16)
     rack (1.2.1)
-    rack-contrib (1.0.1)
-      rack (>= 0.9.1)
     rake (0.8.7)
     rest-client (1.4.2)
       mime-types (>= 1.16)
@@ -46,6 +43,5 @@ DEPENDENCIES
   heroku
   json
   rack
-  rack-contrib
   shotgun
   sqlite3-ruby
