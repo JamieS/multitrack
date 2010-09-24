@@ -1,4 +1,6 @@
 (function(){
+  var storage = ('localStorage' in window);
+
   var uniqueId = function() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -6,30 +8,32 @@
     }).toUpperCase();
   };
 
-  var readCookie = function(cookieName) {
+  var read = function(key) {
+    if (storage && window.localStorage.getItem(key)) return window.localStorage.getItem(cookieName);
     var theCookie=""+document.cookie;
-    var ind=theCookie.indexOf(cookieName);
-    if (ind==-1 || cookieName=="") return false;
+    var ind=theCookie.indexOf(key);
+    if (ind==-1 || key=="") return false;
     var ind1=theCookie.indexOf(';',ind);
     if (ind1==-1) ind1=theCookie.length;
-    var value = unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+    var value = unescape(theCookie.substring(ind+key.length+1,ind1));
     return value;
   };
 
-  var setCookie = function(cookieName, cookieValue, msec_in_utc) {
+  var store = function(key, value, msec_in_utc) {
+    if (storage) window.localStorage.setItem(key, value)
     var expire = new Date(msec_in_utc);
-    document.cookie = cookieName + "=" + escape(cookieValue) + ";path=/" +";expires=" + expire.toUTCString();
+    document.cookie = key + "=" + escape(value) + ";path=/" +";expires=" + expire.toUTCString();
   };
 
   var today = new Date().getTime();
   var referrer = (window.decodeURI)?window.decodeURI(document.referrer):document.referrer;
   var landing_page = (window.decodeURI)?window.decodeURI(window.location):window.location;
-  var uniq = readCookie('_y');
-  var visit = readCookie('_yy')
+  var uniq = read('_y');
+  var visit = read('_yy')
 
   if (!uniq) {
     uniq = uniqueId();
-    setCookie('_y', uniq, today + (1000*60*60*24*360*20)) // 20 years
+    store('_y', uniq, today + (1000*60*60*24*360*20)) // 20 years
   }
 
   if(!visit) {
@@ -37,6 +41,6 @@
   }
 
   // set return visit cookie, always advance this.
-  setCookie('_yy', '.', today + (1000*60*30)); // 30 mins
+  store('_yy', '.', today + (1000*60*30)); // 30 mins
 }());
 
